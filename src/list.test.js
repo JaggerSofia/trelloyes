@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import store from './store'
+import STORE from './store'
 import List from './list'
+import { create } from 'istanbul-reports';
 
 describe('List component', () => {
     it('renders list without crashing', () => {
@@ -11,8 +12,12 @@ describe('List component', () => {
     ReactDOM.unmountComponentAtNode(div);
     });
 
-    // it('renders the UI as expected', () => {
-    //     const  tree = renderer
-    //         .cre
-    // })
+    it('renders the UI as expected', () => {
+        const  tree = renderer
+            .create( 
+                <List header='' key='' cards={[]}/> 
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    })
 })
